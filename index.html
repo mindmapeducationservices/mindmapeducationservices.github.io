@@ -421,15 +421,20 @@
       </div>
       <div class="contact-form">
         <h3>Send an enquiry</h3>
-        <form>
+        <!-- Web3Forms integration — replace YOUR_ACCESS_KEY_HERE with your key from web3forms.com -->
+        <form id="enquiryForm" novalidate>
+          <input type="hidden" name="access_key" value="ab839e99-b650-4bdb-a7f8-8bd4b9d172fd" />
+          <input type="hidden" name="subject" value="New Enquiry — MindMap Education Services" />
+          <input type="hidden" name="from_name" value="MindMap Education Services" />
+          <input type="hidden" name="redirect" value="false" />
           <div class="form-row">
-            <div class="form-group"><label>First name</label><input type="text" placeholder="Your first name" /></div>
-            <div class="form-group"><label>Last name</label><input type="text" placeholder="Your last name" /></div>
+            <div class="form-group"><label for="fname">First name</label><input id="fname" name="fname" type="text" placeholder="Your first name" required /></div>
+            <div class="form-group"><label for="lname">Last name</label><input id="lname" name="lname" type="text" placeholder="Your last name" required /></div>
           </div>
-          <div class="form-group"><label>Email address</label><input type="email" placeholder="your@email.com" /></div>
+          <div class="form-group"><label for="email">Email address</label><input id="email" name="email" type="email" placeholder="your@email.com" required /></div>
           <div class="form-group">
-            <label>Service needed</label>
-            <select>
+            <label for="service">Service needed</label>
+            <select id="service" name="service" required>
               <option value="">Select a service...</option>
               <option>Year 7–10 STEM Tutoring</option>
               <option>Robotics &amp; Mechatronics</option>
@@ -439,9 +444,68 @@
               <option>Exam &amp; Assessment Support</option>
             </select>
           </div>
-          <div class="form-group"><label>Message</label><textarea placeholder="Tell us about your learning goals or what support you need..."></textarea></div>
-          <div class="form-submit"><button class="btn primary" type="submit" style="width:100%;text-align:center;">Submit Enquiry</button></div>
+          <div class="form-group"><label for="message">Message</label><textarea id="message" name="message" placeholder="Tell us about your learning goals or what support you need..." required></textarea></div>
+          <div id="formMsg" style="display:none;padding:12px 16px;border-radius:10px;font-size:.92rem;margin-bottom:8px;"></div>
+          <div class="form-submit"><button class="btn primary" type="submit" id="submitBtn" style="width:100%;text-align:center;">Submit Enquiry</button></div>
         </form>
+
+        <script>
+          document.getElementById('enquiryForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            var btn = document.getElementById('submitBtn');
+            var msg = document.getElementById('formMsg');
+
+            var fname   = document.getElementById('fname').value.trim();
+            var lname   = document.getElementById('lname').value.trim();
+            var email   = document.getElementById('email').value.trim();
+            var service = document.getElementById('service').value;
+            var message = document.getElementById('message').value.trim();
+
+            if (!fname || !lname || !email || !service || !message) {
+              msg.style.display = 'block';
+              msg.style.background = '#fff0f0';
+              msg.style.border = '1px solid #f5c6cb';
+              msg.style.color = '#b00020';
+              msg.textContent = 'Please fill in all fields before submitting.';
+              return;
+            }
+
+            btn.textContent = 'Sending...';
+            btn.disabled = true;
+
+            var formData = new FormData(this);
+            // Override subject with student details
+            formData.set('subject', 'New Enquiry: ' + service + ' — ' + fname + ' ' + lname);
+
+            try {
+              var response = await fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+              });
+              var data = await response.json();
+
+              if (data.success) {
+                msg.style.display = 'block';
+                msg.style.background = '#f0fff4';
+                msg.style.border = '1px solid #a3d9b0';
+                msg.style.color = '#1a6632';
+                msg.textContent = '✓ Thank you! Your enquiry has been sent. We will get back to you shortly.';
+                btn.textContent = 'Enquiry Sent ✓';
+                this.reset();
+              } else {
+                throw new Error('Submission failed');
+              }
+            } catch(err) {
+              msg.style.display = 'block';
+              msg.style.background = '#fff0f0';
+              msg.style.border = '1px solid #f5c6cb';
+              msg.style.color = '#b00020';
+              msg.textContent = 'Something went wrong. Please email us directly at mindmapeducationservices@gmail.com';
+              btn.textContent = 'Submit Enquiry';
+              btn.disabled = false;
+            }
+          });
+        </script>
       </div>
     </div>
   </div>
