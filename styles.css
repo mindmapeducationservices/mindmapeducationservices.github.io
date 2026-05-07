@@ -326,7 +326,7 @@ h1 span { color: var(--sky2); }
 
 .svc-grid {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 24px;
 }
 
@@ -628,7 +628,7 @@ footer {
   .hero-grid { grid-template-columns: 1fr; }
   .hero-card { display: none; }
 
-  .svc-grid { grid-template-columns: 1fr 1fr; }
+  .svc-grid { grid-template-columns: 1fr; }
 
   .detail-grid,
   .detail-grid-rev { grid-template-columns: 1fr; }
