@@ -1,5 +1,5 @@
 /* ============================================================
-   Mind Map Services — styles.css
+   MindMap Services — styles.css
    ============================================================ */
 
 /* --- Design tokens --- */
@@ -109,7 +109,7 @@ header {
   align-items: center;
   justify-content: space-between;
   gap: 20px;
-  padding: 14px 0;
+  padding: 10px 0;
   position: relative;
 }
 
@@ -121,9 +121,9 @@ header {
 }
 
 .brand-logo {
-  width: 44px;
-  height: 44px;
-  border-radius: 12px;
+  width: 64px;
+  height: 64px;
+  border-radius: 14px;
   object-fit: contain;
 }
 
@@ -203,9 +203,9 @@ header {
    HERO
    ============================================================ */
 .hero {
-  background: linear-gradient(135deg, var(--navy) 0%, var(--navy2) 55%, #0d2d5a 100%);
-  color: var(--white);
-  padding: 96px 0 80px;
+  background: linear-gradient(150deg, #f0f5ff 0%, #ffffff 55%, #e8f2ff 100%);
+  color: var(--navy);
+  padding: 80px 0 72px;
   position: relative;
   overflow: hidden;
 }
@@ -213,11 +213,11 @@ header {
 .hero::before {
   content: '';
   position: absolute;
-  top: -120px;
-  right: -120px;
+  top: -140px;
+  right: -140px;
   width: 640px;
   height: 640px;
-  background: radial-gradient(circle, rgba(33, 150, 243, .13) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(33, 150, 243, .07) 0%, transparent 68%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -229,7 +229,7 @@ header {
   left: -60px;
   width: 400px;
   height: 400px;
-  background: radial-gradient(circle, rgba(0, 188, 212, .08) 0%, transparent 68%);
+  background: radial-gradient(circle, rgba(0, 188, 212, .05) 0%, transparent 68%);
   border-radius: 50%;
   pointer-events: none;
 }
@@ -248,9 +248,9 @@ header {
   gap: 8px;
   padding: 7px 16px;
   border-radius: 999px;
-  background: rgba(33, 150, 243, .15);
-  border: 1px solid rgba(33, 150, 243, .3);
-  color: var(--sky2);
+  background: rgba(33, 150, 243, .1);
+  border: 1px solid rgba(33, 150, 243, .22);
+  color: var(--sky);
   font-size: .84rem;
   font-weight: 600;
   margin-bottom: 24px;
@@ -263,19 +263,28 @@ h1 {
   line-height: 1.1;
   font-weight: 800;
   margin-bottom: 20px;
+  color: var(--navy);
 }
 
-h1 span { color: var(--sky2); }
+h1 span { color: var(--sky); }
 
 .hero-lead {
   font-size: 1.06rem;
-  color: rgba(255, 255, 255, .72);
+  color: var(--muted);
   max-width: 56ch;
   margin-bottom: 34px;
   line-height: 1.72;
 }
 
 .hero-cta { display: flex; gap: 14px; flex-wrap: wrap; margin-bottom: 38px; }
+
+/* Secondary button on light hero background */
+.hero .btn.secondary {
+  background: transparent;
+  border: 1.5px solid var(--navy);
+  color: var(--navy);
+}
+.hero .btn.secondary:hover { background: rgba(10, 22, 40, .06); }
 
 .hero-trust { display: flex; gap: 22px; flex-wrap: wrap; }
 
@@ -284,45 +293,44 @@ h1 span { color: var(--sky2); }
   align-items: center;
   gap: 7px;
   font-size: .86rem;
-  color: rgba(255, 255, 255, .58);
+  color: var(--muted);
   font-weight: 500;
 }
 
 /* Hero aside card */
 .hero-card {
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .12);
+  background: var(--white);
+  border: 1px solid rgba(0, 0, 0, .08);
   border-radius: 24px;
   padding: 30px;
-  backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
+  box-shadow: var(--shadow);
 }
 
 .hero-card h3 {
   font-size: 1rem;
   font-weight: 700;
-  color: rgba(255, 255, 255, .88);
+  color: var(--navy);
   margin-bottom: 20px;
 }
 
 .pill-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 .pill {
-  background: rgba(255, 255, 255, .06);
-  border: 1px solid rgba(255, 255, 255, .1);
+  background: var(--light);
+  border: 1px solid rgba(33, 150, 243, .12);
   border-radius: 14px;
   padding: 16px 14px;
 }
 
 .pill .pill-icon { font-size: 1.5rem; margin-bottom: 8px; }
-.pill strong { display: block; font-size: .88rem; color: var(--white); margin-bottom: 4px; }
-.pill span { font-size: .78rem; color: rgba(255, 255, 255, .5); line-height: 1.45; }
+.pill strong { display: block; font-size: .88rem; color: var(--navy); margin-bottom: 4px; }
+.pill span { font-size: .78rem; color: var(--muted); line-height: 1.45; }
 
 
 /* ============================================================
    SERVICES OVERVIEW
    ============================================================ */
-.services-overview { background: var(--light); padding: 84px 0; }
+.services-overview { background: var(--light); padding: 60px 0 0; }
 
 .svc-grid {
   display: grid;
@@ -402,7 +410,7 @@ h1 span { color: var(--sky2); }
 /* ============================================================
    SERVICE DETAIL SECTIONS
    ============================================================ */
-.detail-section { padding: 92px 0; background: var(--white); }
+.detail-section { padding: 72px 0; background: var(--white); }
 .detail-section.detail-alt { background: var(--light); }
 
 .detail-grid {
@@ -429,11 +437,14 @@ h1 span { color: var(--sky2); }
   margin-bottom: 28px;
   line-height: 1.72;
 }
-
-.feature-list { margin-bottom: 32px; }
+.feature-list {
+  margin-bottom: 32px;
+  padding-left: 0;
+  list-style: none;
+}
 
 .feature-list li {
-  padding: 11px 0;
+  padding: 10px 0;
   border-bottom: 1px solid rgba(0, 0, 0, .07);
   font-size: .93rem;
   color: var(--muted);
@@ -451,13 +462,15 @@ h1 span { color: var(--sky2); }
   margin-top: 1px;
 }
 
-.feature-list li strong { color: var(--navy); }
-
+.feature-list li strong {
+  color: var(--navy);
+  flex: 0 0 220px;   /* change this width */
+}
 
 /* ============================================================
    ABOUT
    ============================================================ */
-.about { padding: 92px 0; background: var(--white); }
+.about { padding: 72px 0; background: var(--white); }
 
 .about-grid {
   display: grid;
@@ -510,7 +523,7 @@ h1 span { color: var(--sky2); }
 /* ============================================================
    CONTACT
    ============================================================ */
-.contact { background: var(--light); padding: 92px 0; }
+.contact { background: var(--light); padding: 72px 0; }
 
 .contact-wrap {
   display: grid;
@@ -689,10 +702,10 @@ footer {
 
   .svc-grid { grid-template-columns: 1fr; }
 
-  .detail-section { padding: 64px 0; }
+  .detail-section { padding: 48px 0; }
   .detail-img img { height: 240px; }
-  .about { padding: 64px 0; }
-  .contact { padding: 64px 0; }
+  .about { padding: 48px 0; }
+  .contact { padding: 48px 0; }
   .contact-form { padding: 26px 22px; }
 
   .footer-inner { flex-direction: column; text-align: center; gap: 6px; }
